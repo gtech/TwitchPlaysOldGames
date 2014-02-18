@@ -78,7 +78,7 @@ class CommandSender
   end
   def send_command(key)
     key.to_sym
-    @wsh.AppActivate "ZSNES"
+    @wsh.AppActivate "VisualBoyAdvance"
     if key == :left or key == :right or key == :down or key == :up
       for i in 0..50
         @au3.Send @CODES[key]
