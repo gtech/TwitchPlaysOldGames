@@ -70,7 +70,8 @@ end
 
 class CommandSender
   def initialize
-    @CODES = {up: "{UP}", down: "{DOWN}", left: "{LEFT}", right: "{RIGHT}", l: "l", r: "r", start: "{ENTER}", select: "{SPACE}", a: "a", b: "b", x: "x", y: "y"}
+    @CODES = {up: "{UP}", down: "{DOWN}", left: "{LEFT}", right: "{RIGHT}", l: "l", r: "r", start: "{ENTER}", select: "{SPACE}", a: "a", b: "b", x: "x", y: "y", sleft: "{LEFT}", sright: "{RIGHT}", sup: "{UP}", sdown: "{DOWN}"
+    }
     @wsh = WIN32OLE.new('Wscript.Shell')
     @au3 = WIN32OLE.new "AutoItX3.Control"
     @au3.opt "WinTextMatchMode", 2
@@ -132,8 +133,7 @@ class CommandHandler
   include Cinch::Plugin
 
 #  match /^up$|^down$|^left$|^right$|^l$|^r$|^start$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
-  match /^up$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
-
+  match /^up$|^sdown$|^sleft$|^sright$|^sup$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
   def execute(m)
     @bot.message = m
     @bot.changed
