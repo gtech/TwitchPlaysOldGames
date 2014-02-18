@@ -79,14 +79,8 @@ class CommandSender
   def send_command(key)
     key.to_sym
     @wsh.AppActivate "VisualBoyAdvance"
-    if key == :left or key == :right or key == :down or key == :up
-      for i in 0..50
-        @au3.Send @CODES[key]
-      end
-    else
-      for i in 0..3
-        @au3.Send @CODES[key]
-      end
+    for i in 0..3
+      @au3.Send @CODES[key]
     end
   end
   def send_letter(l)
@@ -132,8 +126,9 @@ end
 class CommandHandler
   include Cinch::Plugin
 
+  match /^up$|^down$|^left$|^right$|^start$|^select$|^a$|^b$/, {use_prefix: false}
 #  match /^up$|^down$|^left$|^right$|^l$|^r$|^start$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
-  match /^start$|^up$|^sdown$|^sleft$|^sright$|^sup$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
+#  match /^start$|^up$|^sdown$|^sleft$|^sright$|^sup$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
   def execute(m)
     @bot.message = m
     @bot.changed
@@ -174,7 +169,7 @@ class OverSeer
     @verticle_buffer = 19
     @INIT_TIME = Time.now
   end
-  def render_votes()
+  def render_votes_democracy()
     hash = @vc.votes_hash
     space = " "
     spacing = space*65
@@ -210,17 +205,21 @@ class OverSeer
       end
     end    
     puts buffer_display
-    #     Shoes.app do
-    #       @vote_tallies = stack do
-    #         para "Up: #{hash[:up]}, Down: #{hash[:down]}, Right: #{hash[:right]}, Left: #{hash[:left]}
-    # L: #{hash[:l]},R: #{hash[:r]}, Start: #{hash[:start]}, Select: #{hash[:select]}
-    # A: #{hash[:a]}, B: #{hash[:b]}, X: #{hash[:x]},Y: #{hash[:y]}"
-    #       end
-    #       @chat_votes_dislay = stack do
-    #         para chat_votes_para
-    #       end
-    #     end
   end
+  def render_votes()
+    hash = @vc.votes_hash
+    space = " "
+    spacing = space*65
+
+    chat_votes_para = String.new
+    for i in 0..(@chat_votes.length - 1)
+      chat_votes_para += spacing + "#{@chat_votes[i].user}: #{@chat_votes[i].message}\n"
+    end
+    system "clear" or system "cls"
+    puts spacing + " " + time_diff_in_natural_language(@INIT_TIME, Time.now)
+    puts chat_votes_para
+  end
+
   def render_moves
     #This is where we render our moves window TODO
   end
