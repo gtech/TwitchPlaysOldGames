@@ -229,7 +229,6 @@ class OverSeer
     else
       @chat_votes.push m
     end
-    render_votes
   end
   def main
     Thread.new do
@@ -237,7 +236,7 @@ class OverSeer
     end
     while true
       sleep @polling_rate
-
+      render_votes
       unless result = @vc.verdict
         next
       end
@@ -246,7 +245,6 @@ class OverSeer
 #      if @buffer.length == @buffer_max
         @last_move = @buffer.delete_at(0)
         @cs.send_command @last_move
-        render_votes
 #      end
     end
   end
