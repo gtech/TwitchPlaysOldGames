@@ -13,7 +13,7 @@ require 'win32ole'
 require 'cinch'
 require 'pry'
 require 'observer'
-
+require 'au3'
 
 class Fixnum
   def year
@@ -141,10 +141,10 @@ class TwitchPlaysIRCBot < Cinch::Bot
     super
     @message = nil
     loggers.clear
-    loggers << Cinch::Logger::FormattedLogger.new(File.open("C:/Users/gtech/workspace/Cinch.log", "a"))
+    loggers << Cinch::Logger::FormattedLogger.new(File.open("C:/Users/gtech/Documents/GitHub/TwitchPlaysOldGames/Cinch.log", "a"))
     configure do |c|
       c.server = "irc.twitch.tv"
-      c.channels = ["#gtechiii"]
+      c.channels = ["#twitchplaysoldgames"]
       c.nick = "twitchplaysgamesbot"
       c.password = "oauth:5b68839ththg7b5wybqtcaenfssdrwc"
       c.plugins.plugins = [CommandHandler]
