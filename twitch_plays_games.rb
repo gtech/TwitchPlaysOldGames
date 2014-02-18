@@ -43,7 +43,7 @@ def pluralize(n, unit)
 #  if n > 1
  #   n.to_s + " " + unit.to_s + "s"
 #  else
-    n.to_s + " " + unit.to_s
+    n.to_s + unit.to_s
  # end
 end
 
@@ -79,7 +79,7 @@ class CommandSender
   def send_command(key)
     key.to_sym
     @wsh.AppActivate "VisualBoyAdvance"
-    for i in 0..3
+    for i in 0..5
       @au3.Send @CODES[key]
     end
   end
