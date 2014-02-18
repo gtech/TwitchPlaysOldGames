@@ -25,16 +25,16 @@ class Fixnum
   def week
     self * 7 * 24 * 60 * 60
   end
-  def day
+  def d
     self * 24 * 60 * 60
   end
-  def hour
+  def h
     self * 60 * 60
   end
-  def minute
+  def m
     self * 60
   end
-  def second
+  def s
     self 
   end
 end
@@ -53,7 +53,7 @@ def time_diff_in_natural_language(from_time, to_time)
   distance_in_seconds = ((to_time - from_time).abs).round
   components = []
 
-  %w(year month week day hour minute second).each do |interval|
+  %w(d h m s).each do |interval|
     # For each interval type, if the amount of time remaining is greater than
     # one unit, calculate how many units fit into the remaining time.
     if distance_in_seconds >= 1.send(interval)
