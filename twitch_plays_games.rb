@@ -210,7 +210,7 @@ class OverSeer
     hash = @vc.votes_hash
     chat_votes_para = String.new
     for i in 0..(@chat_votes.length - 1)
-      chat_votes_para += "#{(@chat_votes[i].user)[0..10]}: #{@chat_votes[i].message}\n"
+      chat_votes_para += "#{(@chat_votes[i].user).to_s[0..10]}: #{@chat_votes[i].message}\n"
     end
     system "clear" or system "cls"
     puts " " + time_diff_in_natural_language(@INIT_TIME, Time.now)
