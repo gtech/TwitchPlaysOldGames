@@ -40,11 +40,11 @@ class Fixnum
 end
 
 def pluralize(n, unit)
-  if n > 1
-    n.to_s + " " + unit.to_s + "s"
-  else
+#  if n > 1
+ #   n.to_s + " " + unit.to_s + "s"
+#  else
     n.to_s + " " + unit.to_s
-  end
+ # end
 end
 
 def time_diff_in_natural_language(from_time, to_time)
