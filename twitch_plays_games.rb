@@ -208,15 +208,12 @@ class OverSeer
   end
   def render_votes()
     hash = @vc.votes_hash
-    space = " "
-    spacing = space*65
-
     chat_votes_para = String.new
     for i in 0..(@chat_votes.length - 1)
-      chat_votes_para += spacing + "#{@chat_votes[i].user}: #{@chat_votes[i].message}\n"
+      chat_votes_para += "#{@chat_votes[i].user}: #{@chat_votes[i].message}\n"
     end
     system "clear" or system "cls"
-    puts spacing + " " + time_diff_in_natural_language(@INIT_TIME, Time.now)
+    puts " " + time_diff_in_natural_language(@INIT_TIME, Time.now)
     puts chat_votes_para
   end
 
