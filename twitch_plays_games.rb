@@ -133,7 +133,7 @@ class CommandHandler
   include Cinch::Plugin
 
 #  match /^up$|^down$|^left$|^right$|^l$|^r$|^start$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
-  match /^up$|^sdown$|^sleft$|^sright$|^sup$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
+  match /^start$|^up$|^sdown$|^sleft$|^sright$|^sup$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
   def execute(m)
     @bot.message = m
     @bot.changed
