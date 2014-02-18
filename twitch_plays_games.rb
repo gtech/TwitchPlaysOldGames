@@ -78,8 +78,14 @@ class CommandSender
   def send_command(key)
     key.to_sym
     @wsh.AppActivate "ZSNES"
-    for i in 0..3
-      @au3.Send @CODES[key]
+    if key == :left or key == :right or key == :down or key == :up
+      for i in 0..50
+        @au3.Send @CODES[key]
+      end
+    else
+      for i in 0..3
+        @au3.Send @CODES[key]
+      end
     end
   end
   def send_letter(l)
@@ -125,7 +131,8 @@ end
 class CommandHandler
   include Cinch::Plugin
 
-  match /^up$|^down$|^left$|^right$|^l$|^r$|^start$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
+#  match /^up$|^down$|^left$|^right$|^l$|^r$|^start$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
+  match /^up$|^down$|^left$|^right$|^l$|^r$|^select$|^a$|^b$|^x$|^y$/, {use_prefix: false}
 
   def execute(m)
     @bot.message = m
@@ -239,11 +246,11 @@ class OverSeer
       end
 
       @buffer.push result
-      if @buffer.length == @buffer_max
+#      if @buffer.length == @buffer_max
         @last_move = @buffer.delete_at(0)
         @cs.send_command @last_move
         render_votes
-      end
+#      end
     end
   end
 end
