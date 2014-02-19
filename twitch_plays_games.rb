@@ -79,7 +79,7 @@ class CommandSender
   def send_command(key)
     key.to_sym
     @wsh.AppActivate "VisualBoyAdvance"
-    for i in 0..5
+    for i in 0..10
       @au3.Send @CODES[key]
     end
   end
